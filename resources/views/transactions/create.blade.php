@@ -63,11 +63,27 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        
+                        @if ($categories->isEmpty())
+                            <div class="mb-4 p-4 bg-yellow-100 text-yellow-700 rounded-md">
+                                Belum ada category. Silakan buat category terlebih dahulu.
+                                <a href="{{ route('categories.create') }}" class="underline font-semibold">
+                                    Add Category
+                                </a>
+                            </div>
+                        @endif
 
                         <div class="mb-4">
-                            <label class="block mb-2 font-medium text-sm text-gray-700">
-                                Category
-                            </label>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="font-medium text-sm text-gray-700">
+                                    Category
+                                </label>
+
+                                <a href="{{ route('categories.create') }}"
+                                class="text-sm text-blue-600 hover:underline">
+                                    Add New Category
+                                </a>
+                            </div>
 
                             <select name="category_id" class="w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="">-- Select Category --</option>
