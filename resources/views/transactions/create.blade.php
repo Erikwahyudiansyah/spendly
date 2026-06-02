@@ -85,7 +85,8 @@
                                 </a>
                             </div>
 
-                            <select name="category_id" class="w-full border-gray-300 rounded-md shadow-sm">
+                            <select name="category_id" class="w-full border-gray-300 rounded-md shadow-sm"
+                                {{ $categories->isEmpty() ? 'disabled' : '' }}>
                                 <option value="">-- Select Category --</option>
 
                                 @foreach ($categories as $category)

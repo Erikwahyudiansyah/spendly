@@ -12,14 +12,33 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = transaction::with('category')
+        $categories = Category::where('user_id', Auth::id())
+            ->orderBy('name')
+            ->get();
+
+        $transactions = Transaction::with('category')
             ->where('user_id', Auth::id())
+            ->when($request->search, function ($query, $search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->when($request->type, function ($query, $type) {
+                $query->where('type', $type);
+            })
+            ->when($request->category_id, function ($query, $categoryId) {
+                $query->where('category_id', $categoryId);
+            })
+            ->when($request->date_from, function ($query, $dateFrom) {
+                $query->whereDate('transaction_date', '>=', $dateFrom);
+            })
+            ->when($request->date_to, function ($query, $dateTo) {
+                $query->whereDate('transaction_date', '<=', $dateTo);
+            })
             ->latest()
             ->get();
         
-        return view('transactions.index', compact('transactions'));
+        return view('transactions.index', compact('transactions', 'categories'));
     }
 
     /**
