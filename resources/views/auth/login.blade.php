@@ -2,6 +2,11 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    <div class="mb-6 text-center">
+        <h1 class="text-2xl font-bold text-white">Welcome Back</h1>
+        <p class="text-sm text-gray-400">Login to manage your expenses with Spendly.</p>
+    </div>
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
