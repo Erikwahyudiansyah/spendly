@@ -1,4 +1,8 @@
 <x-guest-layout>
+    <div class="mb-6 text-center">
+        <h1 class="text-2xl font-bold text-white">Create Your Account</h1>
+        <p class="text-sm text-gray-400">Start tracking your income and expenses with Spendly.</p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
