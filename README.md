@@ -1,59 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Spendly - Personal Expense Tracker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Spendly adalah aplikasi pencatat pemasukan dan pengeluaran pribadi berbasis Laravel 12.  
+Aplikasi ini dibuat sebagai project portfolio pribadi serta untuk mempelajari Laravel MVC, Blade templating, TailwindCSS, database relational, authentication, Git workflow, dan dokumentasi project.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Authentication login dan register menggunakan Laravel Breeze
+- Dashboard summary:
+  - Total income
+  - Total expense
+  - Balance
+  - Recent transactions
+- Category management:
+  - Add category
+  - Edit category
+  - Delete category
+  - Category type: income / expense
+- Transaction management:
+  - Add transaction
+  - Edit transaction
+  - Delete transaction
+  - Relasi transaksi dengan category
+- Filter dan search transactions:
+  - Search berdasarkan title
+  - Filter berdasarkan type
+  - Filter berdasarkan category
+  - Filter berdasarkan date range
+- User-based data access
+- Spendly landing page
+- Navigation menu untuk Dashboard, Categories, dan Transactions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Laravel 12
+- PHP 8.2
+- MySQL
+- Laravel Breeze
+- Blade
+- TailwindCSS
+- Vite
+- Git & GitHub
 
-## Learning Laravel
+## Database Structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### users
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Digunakan untuk authentication user.
 
-## Laravel Sponsors
+### categories
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Digunakan untuk menyimpan kategori income dan expense.
 
-### Premium Partners
+| Field | Description |
+|---|---|
+| id | Primary key |
+| user_id | Relasi ke user |
+| name | Nama kategori |
+| type | income / expense |
+| timestamps | created_at dan updated_at |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### transactions
 
-## Contributing
+Digunakan untuk menyimpan data transaksi user.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Field | Description |
+|---|---|
+| id | Primary key |
+| user_id | Relasi ke user |
+| category_id | Relasi ke category |
+| title | Judul transaksi |
+| amount | Nominal transaksi |
+| type | income / expense |
+| transaction_date | Tanggal transaksi |
+| description | Catatan tambahan |
+| timestamps | created_at dan updated_at |
 
-## Code of Conduct
+#### Installation
+1. Clone repository
+     -  git clone https://github.com/Erikwahyudiansyah/spendly.git
+     -  cd spendly
+2. Install dependency PHP:
+     -  composer install
+3. Install dependency frontend:
+     -  npm install
+4. Copy environment file:
+     -  cp .env.example .env
+5. Generate application key:
+     -  php artisan key:generate
+6. Atur database di file .env:
+     -  DB_DATABASE=spendly_db
+     -  DB_USERNAME=root
+     -  DB_PASSWORD=
+7. Jalankan migration:
+     -  php artisan migrate
+8. Jalankan frontend:
+     -  npm run dev
+9. Jalankan Laravel server:
+     -  php artisan serve
+10. Buka aplikasi:
+     -  http://127.0.0.1:8000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+##### Project Status
 
-## Security Vulnerabilities
+- Completed:
+    - Authentication
+    - Category CRUD
+    - Transaction CRUD
+    - Dashboard summary
+    - Navigation improvement
+    - Filter and search transactions
+    - Spendly landing page
+    - Basic documentation
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Next improvement:
+    - REST API for transactions
+    - Refactor controller logic into service classes
+    - Export report to PDF/Excel
+    - Chart visualization
+    - Deployment
+    - Automated testing
 
-## License
+Author
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Developed by Erik Wahyudiansyah as a Laravel portfolio project.
