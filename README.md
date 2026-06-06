@@ -30,6 +30,23 @@ Aplikasi ini dibuat sebagai project portfolio pribadi serta untuk mempelajari La
 - Spendly landing page
 - Navigation menu untuk Dashboard, Categories, dan Transactions
 
+## Screenshots
+
+### Landing Page
+![Landing Page](docs/screenshots/landing-page.png)
+
+### Dashboard
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Categories
+![Categories](docs/screenshots/categories.png)
+
+### Transactions
+![Transactions](docs/screenshots/transactions.png)
+
+### Add Transaction
+![Add Transaction](docs/screenshots/add-transaction.png)
+
 ## Tech Stack
 
 - Laravel 12
